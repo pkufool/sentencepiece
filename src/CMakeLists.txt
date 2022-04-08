@@ -205,7 +205,7 @@ if (SPM_ENABLE_SHARED)
   add_library(sentencepiece_train SHARED ${SPM_TRAIN_SRCS})
 endif()
 
-add_library(sentencepiece-static STATIC ${SPM_SRCS})
+add_library(sentencepiece-static STATIC ${SPM_SRCS} log)
 add_library(sentencepiece_train-static STATIC ${SPM_TRAIN_SRCS})
 
 target_link_libraries(sentencepiece-static INTERFACE ${SPM_LIBS})
