@@ -205,8 +205,12 @@ if (SPM_ENABLE_SHARED)
   add_library(sentencepiece_train SHARED ${SPM_TRAIN_SRCS})
 endif()
 
-add_library(sentencepiece-static STATIC ${SPM_SRCS} log)
+add_library(sentencepiece-static STATIC ${SPM_SRCS})
 add_library(sentencepiece_train-static STATIC ${SPM_TRAIN_SRCS})
+
+if(${CMAKE_SYSTEM_NAME} STREQUAL "Android")
+  list(APPEND SPM_LIBS "log")
+endif()
 
 target_link_libraries(sentencepiece-static INTERFACE ${SPM_LIBS})
 target_link_libraries(sentencepiece_train-static INTERFACE sentencepiece-static ${SPM_LIBS})
